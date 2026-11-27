@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trace-meeting-agent"
+version = "0.1.0"
+description = "Event handlers for MeetStream bots launched from Trace"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["trace_meeting_agent*"]
