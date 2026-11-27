@@ -1,0 +1,57 @@
+{
+  "name": "trace-engineering-discussion-agent",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "install:ci": "node scripts/install-ci.mjs",
+    "dev": "node scripts/run-framework.mjs dev",
+    "build": "node scripts/run-framework.mjs build",
+    "start": "node scripts/run-framework.mjs dev",
+    "db:generate": "drizzle-kit generate",
+    "test": "node --experimental-strip-types --test tests/core.test.ts tests/auth-navigation.test.ts",
+    "test:api": "node --test --test-concurrency=1 tests/api.test.mjs tests/settings-api.test.mjs tests/workspace-api.test.mjs",
+    "test:worker": "npm run build && node --experimental-strip-types --test tests/webhook-worker.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "preview:build": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
+    "stop": "node scripts/stop-local.mjs",
+    "test:local": "node --test tests/local-server.test.mjs"
+  },
+  "dependencies": {
+    "drizzle-orm": "0.45.2",
+    "lucide-react": "^1.31.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.69.1",
+    "@cloudflare/workers-types": "5.20261113.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.39",
+    "drizzle-kit": "0.31.11",
+    "json-rpc-2.0": "1.7.1",
+    "miniflare": "5.20261110.0-beta",
+    "raw-body": "3.0.2",
+    "react-server-dom-webpack": "19.3.1",
+    "typescript": "5.9.3",
+    "vinext": "1.4.5",
+    "vite": "8.3.8",
+    "wrangler": "4.160.0"
+  },
+  "type": "module",
+  "overrides": {
+    "browserslist": "^4.29.5",
+    "baseline-browser-mapping": "^2.11.37",
+    "fast-uri": "^3.1.9",
+    "fflate": "0.7.5",
+    "esbuild": "0.28.2"
+  },
+  "license": "MIT"
+}
